@@ -8,4 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="glam_black">#1A1A1A</color>
+    <color name="glam_blue">#4B9CFF</color>
+    <color name="glam_gray_10">#E0E0E0</color>
+    <color name="glam_gray_20">#CCCCCC</color>
+    <color name="glam_gray_40">#7F7F7F</color>
+    <color name="glam_dark_gray">#595959</color>
+
 </resources>
