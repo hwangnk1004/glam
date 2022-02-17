@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_fragment1"
+        android:enabled="true"
+        android:icon="@drawable/bottom_navigation_selector"
+        android:title="아이템1" />
+    <item
+        android:enabled="true"
+        android:icon="@drawable/live"
+        android:title="아이템1" />
+    <item
+        android:enabled="true"
+        android:icon="@drawable/station"
+        android:title="아이템1" />f
+    <item
+        android:enabled="true"
+        android:icon="@drawable/connection"
+        android:title="아이템1" />
+    <item
+        android:enabled="true"
+        android:icon="@drawable/more"
+        android:title="아이템1" />
+</menu>

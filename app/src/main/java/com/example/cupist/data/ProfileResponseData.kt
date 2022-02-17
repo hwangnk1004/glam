@@ -78,5 +78,5 @@ data class HeightRangeData(
     var max: Int? = null,
 
     @SerializedName("min")
-    var mi: Int? = null
+    var min: Int? = null
 )

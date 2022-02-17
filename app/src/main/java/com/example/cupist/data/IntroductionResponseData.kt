@@ -1,12 +1,15 @@
 package com.example.cupist.data
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class IntroductionResponseData(
     @SerializedName("data")
+    @Expose
     var data: List<IntroductionData>? = null,
 
     @SerializedName("meta")
+    @Expose
     var meta: IntroductionMetaData? = null
 )
 

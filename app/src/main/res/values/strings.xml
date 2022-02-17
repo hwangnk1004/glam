@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Cupist</string>
+
+    <!-- person xml, text -->
+    <string name="person_item_positive_bt">좋아요</string>
+
+    <!-- 맞춤 추천 xml, text -->
+    <string name="target_item_title_tv">맞춤 추천</string>
+    <string name="target_item_glam_recommend_tv">글램 추천</string>
+    <string name="target_item_best_attraction_tv">최상위 매력</string>
+    <string name="target_item_body_tv">볼륨감 있는 체형</string>
+    <string name="target_item_pet_tv">반려 동물을 키우는</string>
+    <string name="target_item_choose_bt">선택</string>
+    <string name="target_item_bt">24개 항목 모두 보기</string>
+
+    <!-- 프로필 xml, text-->
+    <string name="profile_title_tv">프로필 수정</string>
+    <string name="profile_picture_explain_tv">다양한 매력을 보여줄 수 있는 사진을 올려주세요</string>
+    <string name="profile_picture_more_explain_tv">더 알아보기</string>
+    <string name="profile_name_tv">닉네임</string>
+    <string name="profile_sex_tv">성별</string>
+    <string name="profile_birth_tv">생일</string>
+    <string name="profile_location_tv">위치</string>
+    <string name="profile_introduce_tv">소개</string>
+    <string name="profile_tall_tv">키</string>
+    <string name="profile_body_tv">체형</string>
+    <string name="profile_job_area_tv">직장</string>
+    <string name="profile_job_tv">직업</string>
+    <string name="profile_grade_tv">학력</string>
+    <string name="profile_school_tv">학교</string>
+
+    <string name="profile_introduce_hint">회원님의 매력을 간단하게 소개해주세요</string>
+    <string name="profile_notice_tv">SNS 아이디 등 연락처 입력 시 서비스 이용 제한됩니다.</string>
+    <string name="profile_input_hint">입력해주세요</string>
+    <string name="profile_choose_hint">선택해주세요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
