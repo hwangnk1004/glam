@@ -86,7 +86,7 @@ class MainMultiRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return item.size
     }
 
     fun setItems(data: MutableList<Item>) {
