@@ -1,13 +1,13 @@
-package com.example.cupist.allinterface
+package com.example.cupist.network
 
 import com.example.cupist.data.IntroductionResponseData
 import com.example.cupist.data.ProfileResponseData
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
-interface RetrofitApi {
+interface HomeApi {
     // 오늘의 추천
     @GET("introduction")
     fun fetchTodayReCommand(): Call<IntroductionResponseData>
@@ -15,6 +15,9 @@ interface RetrofitApi {
     // 추가 추천
     @GET("/introduction/additional")
     fun fetchAddReCommand(): Call<IntroductionResponseData>
+
+    @GET("/introduction/additional/{index}")
+    fun fetchAddReCommand(@Path("index") index: Int?): Call<IntroductionResponseData>
 
     // 맞춤 추천
     @POST("/introduction/custom")

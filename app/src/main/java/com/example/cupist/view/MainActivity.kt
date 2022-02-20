@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -25,19 +24,21 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun initMainFragment() {
-        supportFragmentManager.beginTransaction().add(R.id.main_frame_layout, MainFragment())
+        supportFragmentManager.beginTransaction()
+            .add(R.id.main_frame_layout, MainFragment())
+            .addToBackStack("main")
             .commit()
     }
 
-    fun addFragment(fragment: Fragment, fragmentData: Fragment) {
-        fragment.childFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, fragmentData)
-            .addToBackStack("${fragmentData.tag}")
+    fun addChildFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.child_fragment_container, fragment)
+            .addToBackStack(tag)
             .commit()
     }
 
-    fun replaceFragment(fragment: Fragment) {
-        fragment.parentFragmentManager.popBackStack()
+    fun popChildFragment() {
+        supportFragmentManager.popBackStack()
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {

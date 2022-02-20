@@ -9,19 +9,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cupist.adapter.ProfilePhotoRecyclerViewAdapter
-import com.example.cupist.allinterface.ProfileChooseListener
 import com.example.cupist.databinding.FragmentProfileBinding
 import com.example.cupist.dialog.ProfileDialogFragment
+import com.example.cupist.listener.ProfileChooseListener
 import com.example.cupist.profile.ProfileDialogFragmentData.makeArrayData
 import com.example.cupist.profile.ProfileDialogFragmentData.makePhotoData
 import com.example.cupist.util.Preference
-import com.example.cupist.viewmodel.MainViewModel
+import com.example.cupist.viewmodel.ProfileViewModel
 
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentProfileBinding
-    private lateinit var profileViewModel: MainViewModel
+    private lateinit var profileViewModel: ProfileViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,7 +58,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initViewModel() {
-        profileViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         binding.lifecycleOwner = this
         binding.profileViewModel = profileViewModel
     }
@@ -124,7 +124,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             binding.profileBackImageView -> {
-                (activity as MainActivity).replaceFragment(this)
+                (activity as MainActivity).popChildFragment()
             }
             binding.profilePersonTallChooseTextView -> {
                 showDialog(0)

@@ -472,6 +472,6 @@
 
         <variable
             name="profile_view_model"
-            type="com.example.cupist.viewmodel.MainViewModel" />
+            type="com.example.cupist.viewmodel.ProfileViewModel" />
     </data>
 </layout>

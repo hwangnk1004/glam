@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cupist.R
 import com.example.cupist.adapter.ProfileInputDataRecyclerViewAdapter
-import com.example.cupist.allinterface.ProfileChooseListener
+import com.example.cupist.listener.ProfileChooseListener
 import com.example.cupist.databinding.DialogProfileBinding
 import com.example.cupist.profile.ProfileDialogFragmentData.getDeviceSize
 

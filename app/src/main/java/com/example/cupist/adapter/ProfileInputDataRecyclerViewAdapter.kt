@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cupist.ApplicationClass
 import com.example.cupist.R
-import com.example.cupist.allinterface.ProfileChooseListener
+import com.example.cupist.listener.ProfileChooseListener
 import com.example.cupist.databinding.DailogProfileItemBinding
 import com.example.cupist.util.Preference
 

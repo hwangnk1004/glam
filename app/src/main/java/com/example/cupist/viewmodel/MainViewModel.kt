@@ -1,128 +1,91 @@
 package com.example.cupist.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cupist.allinterface.GetDataCallback
-import com.example.cupist.data.IntroductionResponseData
-import com.example.cupist.data.ProfileResponseData
-import com.example.cupist.repository.Repository
+import com.example.cupist.data.HomeItemType
+import com.example.cupist.data.IntroductionDataUiModel
+import com.example.cupist.repository.HomeRepository
+import com.example.cupist.repository.RemoteHomeDataSource
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
 
 class MainViewModel : ViewModel() {
-    private val repo = Repository
 
-    private val _introduceText = MutableLiveData<String>()
-    val introduceText: LiveData<String> = _introduceText
+    private val repo = HomeRepository(RemoteHomeDataSource())
 
-    private val _jobText = MutableLiveData<String>()
-    val jobText: LiveData<String> = _jobText
+    private val _homeAllData: MutableLiveData<List<IntroductionDataUiModel>> = MutableLiveData()
+    val homeAllData: LiveData<List<IntroductionDataUiModel>> = _homeAllData
 
-    private val _todayRecommend = MutableLiveData<IntroductionResponseData>()
-    val todayRecommend: LiveData<IntroductionResponseData> = _todayRecommend
+    fun fetchAllData() {
+        viewModelScope.launch {
+            val todayResult = repo.fetchTodayRecommend()
+            val additionalResult = repo.fetchAddRecommendMore()
 
-    private val _addRecommend = MutableLiveData<IntroductionResponseData>()
-    val addRecommend: LiveData<IntroductionResponseData> = _addRecommend
+            val toDayUiModelList = todayResult?.data?.map { introductionData ->
+                IntroductionDataUiModel.newInstance(HomeItemType.TODAY, introductionData) {
+                    handleClickPerson(it)
+                }
+            }.orEmpty()
 
-    private val _targetRecommend = MutableLiveData<IntroductionResponseData>()
-    val targetRecommend: LiveData<IntroductionResponseData> = _targetRecommend
+            val additionalUiModelList = additionalResult?.data?.map { introductionData ->
+                IntroductionDataUiModel.newInstance(HomeItemType.ADDITIONAL, introductionData) {
+                    handleClickPerson(it)
+                }
+            }.orEmpty()
 
-    private val _profile = MutableLiveData<ProfileResponseData>()
-    val profile: LiveData<ProfileResponseData> = _profile
-
-    fun textWatch(text: CharSequence, type: Int) {
-        when (type) {
-            0 -> _introduceText.value = text.toString()
-            else -> _jobText.value = text.toString()
+            _homeAllData.value = toDayUiModelList
+                .plus(IntroductionDataUiModel.empty(HomeItemType.TARGET_LAYOUT) {
+                    handleClickTargetRecommend()
+                })
+                .plus(additionalUiModelList)
         }
     }
 
-    fun fetchAllData() = viewModelScope.launch {
-        _todayRecommend.value = fetchTodayRecommend()
-        _addRecommend.value = fetchAddRecommend()
-    }
-
-    fun fetchTargetData() = viewModelScope.launch {
-        _targetRecommend.value = fetchTargetRecommend()
-    }
-
-    fun fetchProfileData() = viewModelScope.launch {
-        _profile.value = fetchProfile()
-    }
-
-    private suspend fun fetchTodayRecommend(): IntroductionResponseData? {
-        return suspendCancellableCoroutine {
-            repo.fetchTodayRecommend(object : GetDataCallback<IntroductionResponseData> {
-                override fun onSuccess(data: IntroductionResponseData?) {
-                    Log.d(TAG, "Today Recommend Success")
-                    it.resumeWith(Result.success(data))
+    fun fetchMore() {
+        viewModelScope.launch {
+            val result = repo.fetchAddRecommendMore()
+            val additionalUiModelList = result?.data?.map { introductionData ->
+                IntroductionDataUiModel.newInstance(HomeItemType.ADDITIONAL, introductionData) {
+                    handleClickPerson(it)
                 }
-
-                override fun onFail() {
-                    Log.d(TAG, "Today Recommend Fail")
-                    it.resumeWith(Result.success(null))
-                }
-
-            })
+            }.orEmpty()
+            val current = homeAllData.value.orEmpty()
+            _homeAllData.value = current.plus(additionalUiModelList)
         }
     }
 
-    private suspend fun fetchAddRecommend(): IntroductionResponseData? {
-        return suspendCancellableCoroutine {
-            repo.fetchAddRecommend(object : GetDataCallback<IntroductionResponseData> {
-                override fun onSuccess(data: IntroductionResponseData?) {
-                    Log.d(TAG, "Add Recommend Success")
-                    it.resumeWith(Result.success(data))
-                }
-
-                override fun onFail() {
-                    Log.d(TAG, "Add Recommend Fail")
-                    it.resumeWith(Result.success(null))
-                }
-
-            })
+    private fun handleClickPerson(item: IntroductionDataUiModel) {
+        val currentList = homeAllData.value?.toMutableList()
+        val iterator = currentList?.iterator() ?: return
+        var removed = false
+        while (iterator.hasNext()) {
+            val next = iterator.next()
+            if (next.id == item.id) {
+                iterator.remove()
+                removed = true
+                break
+            }
+        }
+        if (removed) {
+            _homeAllData.value = currentList
         }
     }
 
-    private suspend fun fetchTargetRecommend(): IntroductionResponseData? {
-        return suspendCancellableCoroutine {
-            repo.fetchTargetRecommend(object : GetDataCallback<IntroductionResponseData> {
-                override fun onSuccess(data: IntroductionResponseData?) {
-                    Log.d(TAG, "Target Recommend Success")
-                    it.resumeWith(Result.success(data))
+    private fun handleClickTargetRecommend() {
+        viewModelScope.launch {
+            val result = repo.fetchTargetRecommend()
+            val toAddUiModels = result?.data?.map { introductionData ->
+                IntroductionDataUiModel.newInstance(HomeItemType.TARGET_ITEM, introductionData) {
+                    handleClickPerson(it)
                 }
-
-                override fun onFail() {
-                    Log.d(TAG, "Target Recommend Fail")
-                    it.resumeWith(Result.success(null))
-                }
-
-            })
-        }
-    }
-
-    private suspend fun fetchProfile(): ProfileResponseData? {
-        return suspendCancellableCoroutine {
-            repo.fetchProfile(object : GetDataCallback<ProfileResponseData> {
-                override fun onSuccess(data: ProfileResponseData?) {
-                    Log.d(TAG, "Profile Success")
-                    it.resumeWith(Result.success(data))
-                }
-
-                override fun onFail() {
-                    Log.d(TAG, "Profile Fail")
-                    it.resumeWith(Result.success(null))
-                }
-
-            })
+            }.orEmpty()
+            _homeAllData.value = toAddUiModels.plus(homeAllData.value.orEmpty())
         }
     }
 
     companion object {
-        const val TAG = "glamLog"
+        private val TAG = MainViewModel::class.java.simpleName
     }
 
 }
