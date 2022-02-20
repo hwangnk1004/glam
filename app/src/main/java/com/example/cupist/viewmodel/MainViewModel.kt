@@ -15,6 +15,12 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 class MainViewModel : ViewModel() {
     private val repo = Repository
 
+    private val _introduceText = MutableLiveData<String>()
+    val introduceText: LiveData<String> = _introduceText
+
+    private val _jobText = MutableLiveData<String>()
+    val jobText: LiveData<String> = _jobText
+
     private val _todayRecommend = MutableLiveData<IntroductionResponseData>()
     val todayRecommend: LiveData<IntroductionResponseData> = _todayRecommend
 
@@ -27,9 +33,19 @@ class MainViewModel : ViewModel() {
     private val _profile = MutableLiveData<ProfileResponseData>()
     val profile: LiveData<ProfileResponseData> = _profile
 
+    fun textWatch(text: CharSequence, type: Int) {
+        when (type) {
+            0 -> _introduceText.value = text.toString()
+            else -> _jobText.value = text.toString()
+        }
+    }
+
     fun fetchAllData() = viewModelScope.launch {
         _todayRecommend.value = fetchTodayRecommend()
         _addRecommend.value = fetchAddRecommend()
+    }
+
+    fun fetchTargetData() = viewModelScope.launch {
         _targetRecommend.value = fetchTargetRecommend()
     }
 

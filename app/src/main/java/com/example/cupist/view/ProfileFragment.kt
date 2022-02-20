@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.example.cupist.R
+import com.example.cupist.adapter.ProfilePhotoRecyclerViewAdapter
 import com.example.cupist.allinterface.ProfileChooseListener
 import com.example.cupist.databinding.FragmentProfileBinding
 import com.example.cupist.dialog.ProfileDialogFragment
-import com.example.cupist.profile.ProfileDialogFragmentData
 import com.example.cupist.profile.ProfileDialogFragmentData.makeArrayData
+import com.example.cupist.profile.ProfileDialogFragmentData.makePhotoData
+import com.example.cupist.util.Preference
 import com.example.cupist.viewmodel.MainViewModel
+
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 
@@ -25,6 +27,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         initClick()
         initViewModel()
+        setProfileData()
         subscribeUi()
         profileViewModel.fetchProfileData()
     }
@@ -41,6 +44,19 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.profile = this
     }
 
+    private fun setProfileData() {
+        Preference.initPreference(context)
+        if (!Preference.getInstance().introduce.isNullOrEmpty()) {
+            binding.profilePersonIntroduceEv.setText("${Preference.getInstance().introduce}")
+        }
+        if (!Preference.getInstance().job.isNullOrEmpty()) {
+            binding.profilePersonJobAreaEv.setText("${Preference.getInstance().job}")
+        }
+        binding.profilePersonTallChooseTv.text = Preference.getInstance().height
+        binding.profilePersonBodyChooseTv.text = Preference.getInstance().bodyType
+        binding.profilePersonEducationChooseTv.text = Preference.getInstance().education
+    }
+
     private fun initViewModel() {
         profileViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.lifecycleOwner = this
@@ -53,16 +69,26 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileData = data
             setImageView(data?.pictures)
             if (data?.school.isNullOrEmpty()) {
-                binding.profilePersonSchoolShowTv.visibility = View.INVISIBLE
-                binding.profilePersonSchoolTv.visibility = View.INVISIBLE
+                binding.profilePersonSchoolShowTv.visibility = View.GONE
+                binding.profilePersonSchoolTv.visibility = View.GONE
             }
+        }
+        profileViewModel.introduceText.observe(viewLifecycleOwner) {
+            Preference.getInstance().introduce = it
+        }
+
+        profileViewModel.jobText.observe(viewLifecycleOwner) {
+            Preference.getInstance().job = it
         }
     }
 
     private fun setImageView(data: List<String>?) {
-        Glide.with(this)
-            .load("https://test.dev.cupist.de${data?.get(0)}")
-            .into(binding.profilePhotoTv)
+        val recyclerView = binding.profilePhotoRecyclerView
+        recyclerView.layoutManager =
+            GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
+        val photoRecyclerViewAdapter = ProfilePhotoRecyclerViewAdapter(Glide.with(this))
+        recyclerView.adapter = photoRecyclerViewAdapter
+        photoRecyclerViewAdapter.setItems(makePhotoData(data))
     }
 
     private fun showDialog(type: Int) {
@@ -82,15 +108,15 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         when (type) {
             0 -> {
                 binding.profilePersonTallChooseTv.text = data
-                binding.profilePersonTallChooseTv.setTextColor(resources.getColor(R.color.glam_blue))
+                Preference.getInstance().height = data
             }
             1 -> {
                 binding.profilePersonBodyChooseTv.text = data
-                binding.profilePersonBodyChooseTv.setTextColor(resources.getColor(R.color.glam_blue))
+                Preference.getInstance().bodyType = data
             }
             else -> {
                 binding.profilePersonEducationChooseTv.text = data
-                binding.profilePersonEducationChooseTv.setTextColor(resources.getColor(R.color.glam_blue))
+                Preference.getInstance().education = data
             }
         }
     }

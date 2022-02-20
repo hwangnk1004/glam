@@ -46,4 +46,11 @@ object ProfileDialogFragmentData {
         return array
     }
 
+    fun makePhotoData(data: List<String>?): List<String?> {
+        val photoList = arrayListOf<String?>(null, null, null, null, null, null)
+        data?.forEachIndexed { index, s ->
+            photoList[index] = s
+        }
+        return photoList
+    }
 }

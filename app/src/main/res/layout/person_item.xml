@@ -17,6 +17,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/today_recommend_layout"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginBottom="12dp"
@@ -137,7 +138,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/confirm_negative_bt"
+                    android:id="@+id/confirm_negative_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/delete"
@@ -159,7 +160,7 @@
                 app:layout_constraintTop_toTopOf="@id/confirm_negative_layout">
 
                 <TextView
-                    android:id="@+id/confirm_positive_bt"
+                    android:id="@+id/confirm_positive_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/person_item_positive_bt"

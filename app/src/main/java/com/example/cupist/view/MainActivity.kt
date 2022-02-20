@@ -3,7 +3,6 @@ package com.example.cupist.view
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun addFragment(fragment: Fragment, fragmentData: Fragment) {
-        Log.d("nkh", "test -> ${fragmentData.tag}")
+        binding.mainBnv.visibility = View.GONE
         fragment.childFragmentManager.beginTransaction()
             .add(R.id.fragment_container_view, fragmentData)
             .addToBackStack("${fragmentData.tag}")

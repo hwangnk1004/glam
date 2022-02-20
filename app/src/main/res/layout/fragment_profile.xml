@@ -30,61 +30,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/profile_photo_tv"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/profile_photo_recycler_view"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/person"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/profile_photo_tv2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/person"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/profile_photo_tv3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/person"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/profile_photo_tv4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/person"
-                        app:layout_constraintHorizontal_bias="1"
-                        app:layout_constraintStart_toStartOf="@id/profile_photo_tv"
-                        app:layout_constraintTop_toBottomOf="@id/profile_photo_tv" />
-
-                    <ImageView
-                        android:id="@+id/profile_photo_tv5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/person"
-                        app:layout_constraintStart_toStartOf="@id/profile_photo_tv2"
-                        app:layout_constraintTop_toBottomOf="@id/profile_photo_tv2" />
-
-                    <ImageView
-                        android:id="@+id/profile_photo_tv6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/person"
-                        app:layout_constraintStart_toStartOf="@id/profile_photo_tv3"
-                        app:layout_constraintTop_toBottomOf="@id/profile_photo_tv3" />
+                        app:layout_constraintTop_toTopOf="parent"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -258,6 +209,7 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/profile_introduce_hint"
                         android:onClick="@{profile::onClick}"
+                        android:onTextChanged="@{(text,start,before,count) -> profile_view_model.textWatch(text,0)}"
                         android:textSize="13dp"
                         app:layout_constraintStart_toStartOf="@id/profile_person_introduce_tv"
                         app:layout_constraintTop_toBottomOf="@id/profile_person_introduce_tv" />
@@ -304,7 +256,9 @@
                     android:id="@+id/profile_person_body_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/profile_person_introduce_layout">
 
                     <EditText
@@ -316,6 +270,8 @@
                         android:gravity="center"
                         android:hint="@string/profile_input_hint"
                         android:onClick="@{profile::onClick}"
+                        android:onTextChanged="@{(text,start,before,count) -> profile_view_model.textWatch(text,1)}"
+                        android:textColor="@color/glam_blue"
                         android:textSize="14dp"
                         app:layout_constraintBottom_toBottomOf="@id/profile_person_job_area_tv"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -329,6 +285,7 @@
                         android:gravity="center"
                         android:hint="@string/profile_choose_hint"
                         android:onClick="@{profile::onClick}"
+                        android:textColor="@color/glam_blue"
                         app:layout_constraintBottom_toBottomOf="@id/profile_person_tall_tv"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -354,6 +311,7 @@
                         android:gravity="center"
                         android:hint="@string/profile_choose_hint"
                         android:onClick="@{profile::onClick}"
+                        android:textColor="@color/glam_blue"
                         app:layout_constraintBottom_toBottomOf="@id/profile_person_body_tv"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -426,6 +384,7 @@
                         android:gravity="center"
                         android:hint="@string/profile_choose_hint"
                         android:onClick="@{profile::onClick}"
+                        android:textColor="@color/glam_blue"
                         app:layout_constraintBottom_toBottomOf="@id/profile_person_education_tv"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

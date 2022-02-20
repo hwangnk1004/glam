@@ -2,12 +2,14 @@ package com.example.cupist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cupist.ApplicationClass
 import com.example.cupist.R
 import com.example.cupist.allinterface.ProfileChooseListener
 import com.example.cupist.databinding.DailogProfileItemBinding
+import com.example.cupist.util.Preference
 
 class ProfileInputDataRecyclerViewAdapter(
     private val type: Int,
@@ -46,17 +48,33 @@ class ProfileInputDataRecyclerViewAdapter(
         fun onBind(type: Int, item: String, chooseListener: ProfileChooseListener) {
             binding.apply {
                 dialogProfileItemTv.text = item
-                dialogProfileItemTv.setOnClickListener {
-                    dialogProfileItemTv.setTextColor(
-                        getColor(
-                            ApplicationClass.context,
-                            R.color.glam_blue
-                        )
-                    )
+                setTextColor(dialogProfileItemTv, type, item)
 
+                dialogProfileItemTv.setOnClickListener {
                     chooseListener.onChoose(type, item)
                 }
             }
+        }
+
+        private fun setTextColor(view: TextView, type: Int, item: String) {
+            when (type) {
+                0 -> {
+                    if (Preference.getInstance().height == item) {
+                        view.setTextColor(getColor(ApplicationClass.context, R.color.glam_blue))
+                    }
+                }
+                1 -> {
+                    if (Preference.getInstance().bodyType == item) {
+                        view.setTextColor(getColor(ApplicationClass.context, R.color.glam_blue))
+                    }
+                }
+                else -> {
+                    if (Preference.getInstance().education == item) {
+                        view.setTextColor(getColor(ApplicationClass.context, R.color.glam_blue))
+                    }
+                }
+            }
+
         }
     }
 
