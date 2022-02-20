@@ -1,6 +1,5 @@
 package com.example.cupist.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,10 +73,7 @@ class MainMultiRecyclerViewAdapter(
                 holder.onBind(item[position], Glide.with(ApplicationClass.context), position)
             }
             is TargetViewHolder -> {
-                holder.onBind(
-                    item[position], Glide.with(ApplicationClass.context), position,
-                    targetClickListener
-                )
+                holder.onBind(targetClickListener)
             }
             is AddViewHolder -> {
                 holder.onBind(item[position], Glide.with(ApplicationClass.context), position)
@@ -100,13 +96,7 @@ class MainMultiRecyclerViewAdapter(
                 confirmNegativeLayout.setOnClickListener {
 
                 }
-                confirmNegativeTextView.setOnClickListener {
-
-                }
                 confirmPositiveLayout.setOnClickListener {
-
-                }
-                confirmPositiveTextView.setOnClickListener {
 
                 }
                 introduceLayout.isGone = item.data?.introduction.isNullOrEmpty()
@@ -120,20 +110,11 @@ class MainMultiRecyclerViewAdapter(
                 personTallTv.text = "${item.data!!.height}cm"
             }
         }
-
-        fun deleteCard() {
-
-        }
     }
 
     class TargetViewHolder(var binding: TargetRecommendItemBinding, viewType: Int?) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(
-            item: Item,
-            requestManager: RequestManager,
-            position: Int,
-            listener: TargetRecommendClickListener
-        ) {
+        fun onBind(listener: TargetRecommendClickListener) {
             binding.apply {
                 glamRecommendButtonLayout.setOnClickListener { listener.targetRecommendClick() }
                 superAttractiveButtonLayout.setOnClickListener { listener.targetRecommendClick() }
@@ -147,6 +128,12 @@ class MainMultiRecyclerViewAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: Item, requestManager: RequestManager, position: Int) {
             binding.apply {
+                confirmNegativeLayout.setOnClickListener {
+
+                }
+                confirmPositiveLayout.setOnClickListener {
+
+                }
                 todayRecommendLayout.visibility = View.GONE
                 introduceLayout.isGone = item.data?.introduction.isNullOrEmpty()
                 personInfoLayout.isGone = !item.data?.introduction.isNullOrEmpty()

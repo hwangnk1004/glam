@@ -1,7 +1,7 @@
 package com.example.cupist.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cupist.R
 import com.example.cupist.adapter.MainMultiRecyclerViewAdapter
 import com.example.cupist.allinterface.TargetRecommendClickListener
 import com.example.cupist.data.Item
@@ -17,7 +18,6 @@ import com.example.cupist.data.ViewType.Companion.TARGET_RECOMMEND
 import com.example.cupist.data.ViewType.Companion.TODAY_RECOMMEND
 import com.example.cupist.databinding.FragmentMainBinding
 import com.example.cupist.viewmodel.MainViewModel
-import okhttp3.internal.notify
 
 class MainFragment : Fragment(), View.OnClickListener {
 
@@ -28,6 +28,7 @@ class MainFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initClick()
+        initTabLayout()
         initViewModel()
         subscribeUi()
         mainViewModel.fetchAllData()
@@ -56,6 +57,14 @@ class MainFragment : Fragment(), View.OnClickListener {
 
     private fun initClick() {
         binding.listener = this
+    }
+
+    private fun initTabLayout() {
+        val tabLayout = binding.mainTabLayout
+        val view = layoutInflater.inflate(R.layout.glam_logo, null)
+        tabLayout.addTab(tabLayout.newTab().setCustomView(view))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_layout_item_near))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_layout_item_live))
     }
 
     private fun initViewModel() {
@@ -91,10 +100,6 @@ class MainFragment : Fragment(), View.OnClickListener {
             itemList = itemDataList
             updateRecyclerView()
         }
-
-        mainViewModel.profile.observe(viewLifecycleOwner) {
-
-        }
     }
 
     private fun initRecyclerView() {
@@ -111,6 +116,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         recyclerView.adapter = multiRecyclerviewAdapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun updateRecyclerView() {
         multiRecyclerviewAdapter.setItems(itemList)
         multiRecyclerviewAdapter.notifyDataSetChanged()
@@ -124,6 +130,4 @@ class MainFragment : Fragment(), View.OnClickListener {
         }
 
     }
-
-
 }

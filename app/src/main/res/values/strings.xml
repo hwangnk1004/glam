@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Cupist</string>
 
+    <!-- main tab_layout -->
+    <string name="tab_layout_item_near">근처</string>
+    <string name="tab_layout_item_live">라이브</string>
+
     <!-- person xml, text -->
     <string name="person_item_positive_bt">좋아요</string>
 

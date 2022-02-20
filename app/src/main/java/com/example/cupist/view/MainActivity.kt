@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.cupist.R
 import com.example.cupist.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
 
@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun addFragment(fragment: Fragment, fragmentData: Fragment) {
-        binding.mainBnv.visibility = View.GONE
         fragment.childFragmentManager.beginTransaction()
             .add(R.id.fragment_container_view, fragmentData)
             .addToBackStack("${fragmentData.tag}")
@@ -56,11 +55,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         return super.dispatchTouchEvent(event)
-    }
-
-    override fun onClick(v: View?) {
-        when (v) {
-
-        }
     }
 }

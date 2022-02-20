@@ -47,14 +47,14 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun setProfileData() {
         Preference.initPreference(context)
         if (!Preference.getInstance().introduce.isNullOrEmpty()) {
-            binding.profilePersonIntroduceEv.setText("${Preference.getInstance().introduce}")
+            binding.profilePersonIntroduceEditText.setText("${Preference.getInstance().introduce}")
         }
         if (!Preference.getInstance().job.isNullOrEmpty()) {
-            binding.profilePersonJobAreaEv.setText("${Preference.getInstance().job}")
+            binding.profilePersonJobAreaEditText.setText("${Preference.getInstance().job}")
         }
-        binding.profilePersonTallChooseTv.text = Preference.getInstance().height
-        binding.profilePersonBodyChooseTv.text = Preference.getInstance().bodyType
-        binding.profilePersonEducationChooseTv.text = Preference.getInstance().education
+        binding.profilePersonTallChooseTextView.text = Preference.getInstance().height
+        binding.profilePersonBodyChooseTextView.text = Preference.getInstance().bodyType
+        binding.profilePersonEducationChooseTextView.text = Preference.getInstance().education
     }
 
     private fun initViewModel() {
@@ -69,8 +69,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileData = data
             setImageView(data?.pictures)
             if (data?.school.isNullOrEmpty()) {
-                binding.profilePersonSchoolShowTv.visibility = View.GONE
-                binding.profilePersonSchoolTv.visibility = View.GONE
+                binding.profilePersonSchoolShowTextView.visibility = View.GONE
+                binding.profilePersonSchoolTextView.visibility = View.GONE
             }
         }
         profileViewModel.introduceText.observe(viewLifecycleOwner) {
@@ -107,15 +107,15 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun setChooseData(type: Int, data: String) {
         when (type) {
             0 -> {
-                binding.profilePersonTallChooseTv.text = data
+                binding.profilePersonTallChooseTextView.text = data
                 Preference.getInstance().height = data
             }
             1 -> {
-                binding.profilePersonBodyChooseTv.text = data
+                binding.profilePersonBodyChooseTextView.text = data
                 Preference.getInstance().bodyType = data
             }
             else -> {
-                binding.profilePersonEducationChooseTv.text = data
+                binding.profilePersonEducationChooseTextView.text = data
                 Preference.getInstance().education = data
             }
         }
@@ -123,16 +123,16 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            binding.profileBackIv -> {
+            binding.profileBackImageView -> {
                 (activity as MainActivity).replaceFragment(this)
             }
-            binding.profilePersonTallChooseTv -> {
+            binding.profilePersonTallChooseTextView -> {
                 showDialog(0)
             }
-            binding.profilePersonBodyChooseTv -> {
+            binding.profilePersonBodyChooseTextView -> {
                 showDialog(1)
             }
-            binding.profilePersonEducationChooseTv -> {
+            binding.profilePersonEducationChooseTextView -> {
                 showDialog(2)
             }
         }

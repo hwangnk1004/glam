@@ -35,7 +35,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +45,7 @@
                     app:layout_constraintTop_toBottomOf="@id/profile_photo_layout">
 
                     <TextView
-                        android:id="@+id/profile_picture_explain_tv"
+                        android:id="@+id/profile_picture_explain_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_picture_explain_tv"
@@ -58,7 +58,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/profile_picture_more_explain_tv"
+                        android:id="@+id/profile_picture_more_explain_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_picture_more_explain_tv"
@@ -89,12 +89,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/lock"
-                        app:layout_constraintBottom_toBottomOf="@id/profile_name_ev"
-                        app:layout_constraintStart_toEndOf="@id/profile_name_ev"
-                        app:layout_constraintTop_toTopOf="@id/profile_name_ev" />
+                        app:layout_constraintBottom_toBottomOf="@id/profile_name_input_text_view"
+                        app:layout_constraintStart_toEndOf="@id/profile_name_input_text_view"
+                        app:layout_constraintTop_toTopOf="@id/profile_name_input_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_sex_ev"
+                        android:id="@+id/profile_sex_input_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -103,10 +103,10 @@
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_name_ev" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_name_input_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_birth_ev"
+                        android:id="@+id/profile_birth_input_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -115,10 +115,10 @@
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_sex_ev" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_sex_input_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_location_ev"
+                        android:id="@+id/profile_location_input_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -127,24 +127,24 @@
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_birth_ev" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_birth_input_text_view" />
 
 
                     <TextView
-                        android:id="@+id/profile_name_ev"
+                        android:id="@+id/profile_name_input_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:text="@{profile_data.name}"
                         android:textColor="@color/glam_blue"
                         android:textSize="16dp"
-                        app:layout_constraintBottom_toBottomOf="@id/profile_name_tv"
+                        app:layout_constraintBottom_toBottomOf="@id/profile_name_text_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/profile_name_tv" />
+                        app:layout_constraintTop_toTopOf="@id/profile_name_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_location_tv"
+                        android:id="@+id/profile_location_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -153,10 +153,10 @@
                         android:textColor="@color/glam_black"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_birth_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_birth_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_birth_tv"
+                        android:id="@+id/profile_birth_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -165,10 +165,10 @@
                         android:textColor="@color/glam_black"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_sex_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_sex_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_sex_tv"
+                        android:id="@+id/profile_sex_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -177,10 +177,10 @@
                         android:textColor="@color/glam_black"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_name_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_name_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_name_tv"
+                        android:id="@+id/profile_name_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -201,7 +201,7 @@
                     app:layout_constraintTop_toBottomOf="@id/profile_person_info_layout">
 
                     <EditText
-                        android:id="@+id/profile_person_introduce_ev"
+                        android:id="@+id/profile_person_introduce_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -211,11 +211,11 @@
                         android:onClick="@{profile::onClick}"
                         android:onTextChanged="@{(text,start,before,count) -> profile_view_model.textWatch(text,0)}"
                         android:textSize="13dp"
-                        app:layout_constraintStart_toStartOf="@id/profile_person_introduce_tv"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_introduce_tv" />
+                        app:layout_constraintStart_toStartOf="@id/profile_person_introduce_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_introduce_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_introduce_tv"
+                        android:id="@+id/profile_person_introduce_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -227,7 +227,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/profile_person_notice_tv"
+                        android:id="@+id/profile_person_notice_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -236,7 +236,7 @@
                         android:textColor="@color/glam_gray_40"
                         android:textSize="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_introduce_ev" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_introduce_edit_text" />
 
                     <View
                         android:layout_width="match_parent"
@@ -249,7 +249,7 @@
                         android:layout_height="@dimen/divider_height"
                         android:layout_marginTop="20dp"
                         android:background="@color/divider_color"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_notice_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_notice_text_view" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -262,7 +262,7 @@
                     app:layout_constraintTop_toBottomOf="@id/profile_person_introduce_layout">
 
                     <EditText
-                        android:id="@+id/profile_person_job_area_ev"
+                        android:id="@+id/profile_person_job_area_edit_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -273,26 +273,26 @@
                         android:onTextChanged="@{(text,start,before,count) -> profile_view_model.textWatch(text,1)}"
                         android:textColor="@color/glam_blue"
                         android:textSize="14dp"
-                        app:layout_constraintBottom_toBottomOf="@id/profile_person_job_area_tv"
+                        app:layout_constraintBottom_toBottomOf="@id/profile_person_job_area_text_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profile_person_body_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_tall_choose_tv"
+                        android:id="@+id/profile_person_tall_choose_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="@string/profile_choose_hint"
                         android:onClick="@{profile::onClick}"
                         android:textColor="@color/glam_blue"
-                        app:layout_constraintBottom_toBottomOf="@id/profile_person_tall_tv"
+                        app:layout_constraintBottom_toBottomOf="@id/profile_person_tall_text_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/profile_person_tall_tv" />
+                        app:layout_constraintTop_toTopOf="@id/profile_person_tall_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_body_tv"
+                        android:id="@+id/profile_person_body_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -301,10 +301,10 @@
                         android:textColor="@color/glam_black"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_tall_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_tall_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_body_choose_tv"
+                        android:id="@+id/profile_person_body_choose_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -312,13 +312,13 @@
                         android:hint="@string/profile_choose_hint"
                         android:onClick="@{profile::onClick}"
                         android:textColor="@color/glam_blue"
-                        app:layout_constraintBottom_toBottomOf="@id/profile_person_body_tv"
+                        app:layout_constraintBottom_toBottomOf="@id/profile_person_body_text_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_tall_choose_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_tall_choose_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_job_area_tv"
+                        android:id="@+id/profile_person_job_area_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -330,7 +330,7 @@
                         app:layout_constraintTop_toBottomOf="@id/profile_person_body_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_tall_tv"
+                        android:id="@+id/profile_person_tall_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -341,7 +341,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/profile_person_job_tv"
+                        android:id="@+id/profile_person_job_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -350,10 +350,10 @@
                         android:textColor="@color/glam_black"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_area_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_area_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_job_show_tv"
+                        android:id="@+id/profile_person_job_show_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -362,10 +362,10 @@
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_area_ev" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_area_edit_text" />
 
                     <TextView
-                        android:id="@+id/profile_person_education_tv"
+                        android:id="@+id/profile_person_education_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -374,10 +374,10 @@
                         android:textColor="@color/glam_black"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_education_choose_tv"
+                        android:id="@+id/profile_person_education_choose_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -385,13 +385,13 @@
                         android:hint="@string/profile_choose_hint"
                         android:onClick="@{profile::onClick}"
                         android:textColor="@color/glam_blue"
-                        app:layout_constraintBottom_toBottomOf="@id/profile_person_education_tv"
+                        app:layout_constraintBottom_toBottomOf="@id/profile_person_education_text_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_show_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_job_show_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_school_tv"
+                        android:id="@+id/profile_person_school_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -400,10 +400,10 @@
                         android:textColor="@color/glam_black"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_education_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_education_text_view" />
 
                     <TextView
-                        android:id="@+id/profile_person_school_show_tv"
+                        android:id="@+id/profile_person_school_show_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="30dp"
@@ -415,7 +415,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_education_choose_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_education_choose_text_view" />
 
                     <View
                         android:id="@+id/profile_person_body_view"
@@ -423,7 +423,7 @@
                         android:layout_height="@dimen/divider_height"
                         android:layout_marginTop="20dp"
                         android:background="@color/divider_color"
-                        app:layout_constraintTop_toBottomOf="@id/profile_person_body_choose_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_person_body_choose_text_view" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
@@ -437,7 +437,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/profile_back_iv"
+                android:id="@+id/profile_back_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
