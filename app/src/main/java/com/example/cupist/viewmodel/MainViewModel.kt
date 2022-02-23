@@ -45,6 +45,7 @@ class MainViewModel : ViewModel() {
     fun fetchMore() {
         viewModelScope.launch {
             val result = repo.fetchAddRecommendMore()
+            // list를 통째로 다른 타입으로 캐스팅할 때 사용.
             val additionalUiModelList = result?.data?.map { introductionData ->
                 IntroductionDataUiModel.newInstance(HomeItemType.ADDITIONAL, introductionData) {
                     handleClickPerson(it)

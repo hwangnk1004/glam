@@ -27,6 +27,7 @@ class RemoteHomeDataSource : HomeDateSource {
     private var homeApi: HomeApi = retrofit.create(HomeApi::class.java)
 
     override suspend fun fetchTodayReCommand(): IntroductionResponseData? {
+        // runCatching : error 핸들링을 위한 함수 , awaitResponse : 동기 처리 Retrofit에서 제공하는 확장 함수
         return runCatching { homeApi.fetchTodayReCommand().awaitResponse() }.getOrNull()?.body()
     }
 
